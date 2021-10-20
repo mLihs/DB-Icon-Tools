@@ -1,0 +1,29 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sketch-hq/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
+  "icon": "icon.png",
+  "commands": [
+    {
+      "name": "Functional Icon - Styles and Export",
+      "handlers" : {
+        "run" : "setSliceFunctionalIcon"
+      },
+      "identifier": "db-icon.functional.IconsetSlice",
+      "script": "./functionalIcon.js"
+    },
+    {
+      "name": "Functional Icon - Export to Brandscape",
+      "handlers" : {
+        "run" : "exportBrandsCape"
+      },
+      "identifier": "db-icon.functional.exportBrandscape",
+      "script": "./functionalIcon.js"
+    }
+  ],
+  "menu": {
+    "title": "DB-Icon",
+    "items": [
+      "db-icon.functional.IconsetSlice",
+      "db-icon.functional.exportBrandscape"
+    ]
+  }
+}
