@@ -3,7 +3,7 @@
   "icon": "icon.png",
   "commands": [
     {
-      "name": "Functional Icon - Styles and Export",
+      "name": "Setup Styles and Export",
       "handlers" : {
         "run" : "setSliceFunctionalIcon"
       },
@@ -11,19 +11,47 @@
       "script": "./functionalIcon.js"
     },
     {
-      "name": "Functional Icon - Export to Brandscape",
+      "name": "Create Export to Brandscape",
       "handlers" : {
         "run" : "exportBrandsCape"
       },
       "identifier": "db-icon.functional.exportBrandscape",
       "script": "./functionalIcon.js"
+    },
+    {
+      "name": "Setup Export",
+      "handlers" : {
+        "run" : "setSliceIllustrativeIcon"
+      },
+      "identifier": "db-icon.illustrative.IconsetSlice",
+      "script": "./illustrativeIcon.js"
+    },
+    {
+      "name": "Create Export to Brandscape",
+      "handlers" : {
+        "run" : "exportBrandsCape"
+      },
+      "identifier": "db-icon.illustrative.exportBrandscape",
+      "script": "./illustrativeIcon.js"
     }
   ],
   "menu": {
     "title": "DB-Icon",
     "items": [
-      "db-icon.functional.IconsetSlice",
-      "db-icon.functional.exportBrandscape"
+      {
+        "title": "Functional Icons",
+        "items":[
+          "db-icon.functional.IconsetSlice",
+          "db-icon.functional.exportBrandscape"
+        ]
+      },
+      {
+        "title": "Illustrative Icons",
+        "items":[
+          "db-icon.illustrative.IconsetSlice",
+          "db-icon.illustrative.exportBrandscape"
+        ]
+      }
     ]
   }
 }
