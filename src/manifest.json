@@ -1,7 +1,18 @@
 {
   "$schema": "https://raw.githubusercontent.com/sketch-hq/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
   "icon": "icon.png",
+  "identifier": "com.atomatic.icon-quality-tools",
   "commands": [
+    
+    {
+      "name": "Check Quality",
+      "shortcut": "cmd 2",
+      "handlers" : {
+        "run" : "checkHiddenPoints"
+      },
+      "identifier": "db-icon.functional.checkQuality",
+      "script": "./functionalIcon.js"
+    },
     {
       "name": "Setup Styles and Export",
       "handlers" : {
@@ -33,6 +44,16 @@
       },
       "identifier": "db-icon.illustrative.exportBrandscape",
       "script": "./illustrativeIcon.js"
+    },
+    {
+      "name": "Message",
+      "identifier": "element.show",
+      "script": "linkComands.js",
+      "handlers": {
+        "actions": {
+          "HandleURL": "setSelection"
+        }
+      }
     }
   ],
   "menu": {
@@ -42,6 +63,7 @@
         "title": "Functional Icons",
         "items":[
           "db-icon.functional.IconsetSlice",
+          "db-icon.functional.checkQuality",
           "db-icon.functional.exportBrandscape"
         ]
       },

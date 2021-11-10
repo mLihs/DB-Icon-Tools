@@ -1,6 +1,6 @@
 {
   "name": "db-icon",
-  "description": "",
+  "description": "A Plugin that help to Streamline your Icon Development - in termes Of Export Setting, Quality and SVG Compression (Based on the SVGO Pluging). This Plugin *requires* Sketch 3.8.",
   "version": "0.1.0",
   "engines": {
     "sketch": ">=49.0"
