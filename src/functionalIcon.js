@@ -229,6 +229,7 @@ export var checkHiddenPoints = function(context){
 
   function runThruPoints(object) {
 
+    
     if (object.type == "Shape"){
 
       var objName = object.name;
@@ -419,7 +420,7 @@ export var setSliceFunctionalIcon = function() {
       exportname.forEach(phat => setSlice(object, phat))
 
 
-    } else if (object.type == "Shape"){
+    } else if (object.type == "Shape" || object.type == "ShapePath" && object.parent.type != "Shape"){
         object.name = "🎨 Color"
         object.style.syncWithSharedStyle(defaultStyleID);
     }

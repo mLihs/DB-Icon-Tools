@@ -46,6 +46,16 @@ export function saveToFile({ filenamePrefix, content: string, fileType }) {
 }
 
 
+export function getPluginPath (context) {
+  let path = context.scriptPath.split('/');
+  path.splice(-3, 3);
+  return path.join('/');
+}
+
+
+
+
+
 export function documentName(context){
 
   if (context.document.fileURL() == null) { 
