@@ -6,7 +6,6 @@
     
     {
       "name": "Check Quality",
-      "shortcut": "cmd 2",
       "handlers" : {
         "run" : "checkHiddenPoints"
       },
@@ -52,6 +51,16 @@
       "handlers": {
         "actions": {
           "HandleURL": "setSelection"
+        }
+      }
+    },
+    {
+      "script": "./plugin.js",
+      "scope": "application",
+      "handlers": {
+        "actions": {
+          "ExportSlices": "compress",
+          "Export": "compress"
         }
       }
     }

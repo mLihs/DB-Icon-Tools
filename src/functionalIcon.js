@@ -27,8 +27,6 @@ const errorLayerName = "Point-Error-Marker_Plugin";
 
 
 
-
-
 function saveToFile({ filenamePrefix, content: string }) {
   // Configuring save panel
   var savePanel = NSSavePanel.savePanel();
@@ -143,9 +141,14 @@ function checkShapePaht(object){
 }
 
 
-
-
 export var checkHiddenPoints = function(context){
+  GF.findSysnoyms()
+}
+
+export var checkHiddenPointsQ = function(context){
+
+
+  
 
   var selectedPage = selectPage(document)
 
@@ -158,17 +161,19 @@ export var checkHiddenPoints = function(context){
   var docNameArray = docName.split("/");
   docName = docNameArray[docNameArray.length - 1];
 
+
+
   let htmlDocHeader = "<h1>Icon Design Consistency Check</h1><p class='subline'>"+docName+"</p>"
   let htmlTableHeader = `<table>
                         <thead>
                           <tr>
                             <th width="200px">Icon</th>
                             <th>Vector Quality</th>
-                            <th>Vector Closed</th>
+                            <th>Phat Closed</th>
                           </tr>
                         </thead>`
 
-  function checkSingeleShape (object) {
+  function checkSingleShape (object) {
     var objName = object.name;
     var objNameArray = objName.split("/")
     var objLastName = objNameArray[objNameArray.length -1];
@@ -180,7 +185,7 @@ export var checkHiddenPoints = function(context){
       objArtboardName = objArtboard.name;
     }
 
-    var link = GF.createLink(object.id)
+    var link = GF.createLink(object.id, docName)
     objName = "<td><span class='block'>"+GF.createNiceHTMLLink(objLastName, link)+"</span><span class='block smallText'>"+objArtboardName+"</span></td>";
     
 
@@ -252,7 +257,7 @@ export var checkHiddenPoints = function(context){
       detailTable+="<tbody class='table-to-hide'>"
       object.layers.forEach(shape => {
         
-        var checkDetailResult = checkSingeleShape(shape)
+        var checkDetailResult = checkSingleShape(shape)
 
         if (checkDetailResult.error){
           detailError = true;
@@ -291,7 +296,7 @@ export var checkHiddenPoints = function(context){
 
       checkOutput+="<tbody>"
       checkOutput+="<tr>";
-      checkOutput+=checkSingeleShape(object).export;
+      checkOutput+=checkSingleShape(object).export;
       checkOutput+="</tr>";
       checkOutput+="</tbody>"
 
@@ -423,6 +428,14 @@ export var setSliceFunctionalIcon = function() {
     } else if (object.type == "Shape" || object.type == "ShapePath" && object.parent.type != "Shape"){
         object.name = "🎨 Color"
         object.style.syncWithSharedStyle(defaultStyleID);
+
+        object.frame.setFixedHeight = true;
+        object.frame.setFixedWidth = true;
+
+        var skob = object.sketchObject
+        skob.hasFixedHeight = 1
+        skob.hasFixedWidth = 1
+
     }
 
     if (object.layers && object.layers.length) {

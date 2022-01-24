@@ -53,9 +53,6 @@ export function getPluginPath (context) {
 }
 
 
-
-
-
 export function documentName(context){
 
   if (context.document.fileURL() == null) { 
@@ -67,10 +64,36 @@ export function documentName(context){
 }
 
 
+export function setFocusOnDocuments(neededDocument){
+  
+  var openDocuments = sketch.getDocuments();
+  var docExsits = false;
+  openDocuments.forEach(x => {
+    var name = x.path
+    if (name){
+      
+      var fileName = decodeURIComponent(name)
+      fileName = fileName.match(/(?:.+\/)(.+)/)[1];
+      fileName = fileName.replace(/\.sketch$/, '');
 
-export function createLink(uri){
+      if (neededDocument == fileName){
+        x.sketchObject.window().makeKeyAndOrderFront(nil)
+        docExsits = true;
+      }
+    }
+  })
+
+  return docExsits;
+
+}
+
+
+
+
+export function createLink(uri, doc){
   // encodeURIComponent(URI)
-  return LINKINPUT+LAYERSHOWFUNCTION+"?msg="+encodeURIComponent(uri);
+
+  return LINKINPUT+LAYERSHOWFUNCTION+"?msg="+encodeURIComponent(uri)+"&doc="+encodeURIComponent(doc);
 
 }
 
@@ -123,7 +146,7 @@ export function drawErrorRegion (pointA, pointB, objFrame, object, name){
   var fillStyle = {
                   "borders":
                     [{
-                      color: '#ec0016',
+                      color: '#FF00F7CC',
                       fillType: Style.FillType.Color,
                       thickness: 0.5
                     }]
@@ -151,3 +174,21 @@ export function drawErrorRegion (pointA, pointB, objFrame, object, name){
 
   })
 }
+
+
+
+export function findSysnoyms(){
+
+  fetch("https://api-free.deepl.com/v2/translate?auth_key=e4977bb9-0a12-dc25-714c-278288c82c36%3Afx&text=Hello%20World&target_lang=de", {
+    "method": "GET"
+  })
+  .then(response => {
+    console.log(response.text());
+  })
+  .catch(err => {
+    console.error(err);
+  });
+
+}
+
+

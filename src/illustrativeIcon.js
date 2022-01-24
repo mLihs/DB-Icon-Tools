@@ -5,7 +5,7 @@ import * as GF from './globalfunctions.js'
 const defaultStyleName = "1. Default"
 const subfolderName = "export"
 
-const iconPrefix = "ic-db"
+const iconPrefix = "ic-db_il"
 const csvFileName = "icon-migration"
 
 var fileType = 'csv';
@@ -24,6 +24,18 @@ function setSlice(object, exportname){
     frame: { x: 0, y:0, width: object.frame.width, height: object.frame.height },
     index: 0,
     exportFormats:[{"fileFormat":"svg"}]
+  })
+}
+
+function setSlicePng(object, exportname, size){
+  var newSlice = sketch.Slice
+  object = object;
+  let mySquare = new newSlice({
+    name: exportname,
+    parent: object, 
+    frame: { x: 0, y:0, width: object.frame.width, height: object.frame.height },
+    index: 0,
+    exportFormats:[{"fileFormat":"png", "size": size}]
   })
 }
 
@@ -152,10 +164,14 @@ export var setSliceIllustrativeIcon = function() {
       var reducedAbsoluteName = objFolderName.join("/")+"/"+iconPrefix+"_"+objCleanNiceName;
      
    
-      var exportname = ["export/absolute_folder/"+absoluteName,
-                        "export/absolute_filename/"+reducedAbsoluteName]
+      var exportname = ["export/svg/absolute_folder/"+absoluteName,
+                        "export/svg/absolute_filename/"+reducedAbsoluteName]
       exportname.forEach(phat => setSlice(object, phat))
 
+      var exportnamepng = [{"name": ("export/sticker/ios_/absolute_filename/"+reducedAbsoluteName + "-300"), "size": "300w"},
+                          {"name": ("export/sticker/ios_/absolute_filename/"+reducedAbsoluteName + "-408"), "size": "408w"},
+                          {"name": ("export/sticker/ios_/absolute_filename/"+reducedAbsoluteName + "-618"), "size": "618w"}]
+      //exportnamepng.forEach(phat => setSlicePng(object, phat.name, phat.size))
 
     } /*else if (object.type == "Shape"){
         object.name = "🎨 Color"

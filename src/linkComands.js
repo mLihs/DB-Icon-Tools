@@ -1,6 +1,9 @@
 //import sketch from 'sketch'
 
+import * as GF from './globalfunctions.js'
+
 var sketch = require('sketch/dom');
+var UI = require('sketch/ui')
 var document = sketch.getSelectedDocument()
 
 function centerToLayer(obj){
@@ -32,5 +35,11 @@ function focusOnLayer (id){
 export var setSelection = function (context) {
   let query = context.actionContext.query
   var theID = query.msg
-  focusOnLayer (theID)
+  var theDoc = query.doc
+  var docIsOpen = GF.setFocusOnDocuments(theDoc)
+  if (docIsOpen){
+    focusOnLayer (theID)
+  } else {
+    UI.alert('Document not Open', 'Please open '+ theDoc +' first.')
+  }
 }

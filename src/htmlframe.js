@@ -114,7 +114,7 @@ export let header = `
         }
 
         .table-to-hide td:first-child{
-          padding-left: 28px;
+          padding-left: 36px;
         } 
 
         tr .no-padding {
